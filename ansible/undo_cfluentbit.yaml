@@ -1,0 +1,42 @@
+---
+- name: Undo CloudWatch Container Insights Setup on EKS Cluster
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Delete Fluent Bit configmap
+      k8s:
+        state: absent
+        api_version: v1
+        kind: ConfigMap
+        name: fluent-bit-cluster-info
+        namespace: amazon-cloudwatch
+      register: delete_configmap
+
+    - name: Ensure Fluent Bit configmap was deleted successfully
+      fail:
+        msg: "Failed to delete Fluent Bit configmap"
+      when: delete_configmap.failed
+
+    - name: Delete Fluent Bit manifest
+      k8s:
+        state: absent
+        src: https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/fluent-bit/fluent-bit.yaml
+      register: delete_fluentbit
+
+    - name: Ensure Fluent Bit manifest was deleted successfully
+      fail:
+        msg: "Failed to delete Fluent Bit manifest"
+      when: delete_fluentbit.failed
+
+    - name: Delete CloudWatch namespace
+      k8s:
+        state: absent
+        api_version: v1
+        kind: Namespace
+        name: amazon-cloudwatch
+      register: delete_namespace
+
+    - name: Ensure CloudWatch namespace was deleted successfully
+      fail:
+        msg: "Failed to delete CloudWatch namespace"
+      when: delete_namespace.failed

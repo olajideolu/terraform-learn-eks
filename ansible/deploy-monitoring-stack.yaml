@@ -1,0 +1,53 @@
+---
+- name: Set up Prometheus monitoring stack
+  hosts: localhost
+  vars:
+    kubeconfig_path: "/home/mubarak/projects/devOps/terraform/kubeconfig"
+  tasks:
+    - name: Add prometheus-community Helm repository
+      kubernetes.core.helm_repository:
+        name: prometheus-community
+        repo_url: https://prometheus-community.github.io/helm-charts
+        kubeconfig: "{{ kubeconfig_path }}"
+
+    - name: Add kube-state-metrics Helm repository
+      kubernetes.core.helm_repository:
+        name: kube-state-metrics
+        repo_url: https://kubernetes.github.io/kube-state-metrics
+        kubeconfig: "{{ kubeconfig_path }}"
+
+    # - name: Update Helm repositories
+    #   kubernetes.core.helm_repository:
+    #     name: prometheus-community
+    #     state: present
+
+    - name: Create monitoring namespace
+      k8s:
+        state: present
+        definition:
+          apiVersion: v1
+          kind: Namespace
+          metadata:
+            name: monitoring
+        kubeconfig: "{{ kubeconfig_path }}"
+
+    - name: Install helm diff plugin
+      kubernetes.core.helm_plugin:
+        plugin_name: diff
+        state: latest
+        kubeconfig: "{{ kubeconfig_path }}"
+
+    - name: Install kube-prometheus-stack via Helm
+      kubernetes.core.helm:
+        name: monitoring
+        chart_ref: prometheus-community/kube-prometheus-stack
+        release_namespace: monitoring
+        update_repo_cache: true
+        kubeconfig: "{{ kubeconfig_path }}"
+
+    - name: create loadbalancer for Grafana
+      k8s:
+        src: /home/mubarak/projects/devOps/terraform/ansible/grafana-lb-svc.yaml
+        state: present
+        namespace: monitoring
+        kubeconfig: "{{ kubeconfig_path }}"

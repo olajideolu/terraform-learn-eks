@@ -1,0 +1,73 @@
+---
+- name: Setup CloudWatch Container Insights on EKS Cluster
+  hosts: localhost
+  gather_facts: no
+  vars:
+    ClusterName: demo-cluster
+    RegionName: eu-central-1
+    FluentBitHttpPort: "2020"
+    FluentBitReadFromHead: "Off"
+  tasks:
+    - name: Apply CloudWatch namespace manifest
+      k8s:
+        state: present
+        src: https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/cloudwatch-namespace.yaml
+      register: apply_namespace
+
+    - name: Ensure namespace manifest was applied successfully
+      fail:
+        msg: "Failed to apply CloudWatch namespace manifest"
+      when: apply_namespace.failed
+
+    - name: Set FluentBitReadFromTail variable
+      set_fact:
+        FluentBitReadFromTail: "{{ 'Off' if FluentBitReadFromHead == 'On' else 'On' }}"
+
+    - name: Set FluentBitHttpServer variable
+      set_fact:
+        FluentBitHttpServer: "{{ 'Off' if FluentBitHttpPort == '' else 'On' }}"
+
+    - name: Create Fluent Bit configmap
+      k8s:
+        state: present
+        definition:
+          apiVersion: v1
+          kind: ConfigMap
+          metadata:
+            name: fluent-bit-cluster-info
+            namespace: amazon-cloudwatch
+          data:
+            cluster.name: "{{ ClusterName }}"
+            http.server: "{{ FluentBitHttpServer }}"
+            http.port: "{{ FluentBitHttpPort }}"
+            read.head: "{{ FluentBitReadFromHead }}"
+            read.tail: "{{ FluentBitReadFromTail }}"
+            logs.region: "{{ RegionName }}"
+      register: create_configmap
+
+    - name: Ensure Fluent Bit configmap was created successfully
+      fail:
+        msg: "Failed to create Fluent Bit configmap"
+      when: create_configmap.failed
+
+    - name: Apply Fluent Bit manifest
+      k8s:
+        state: present
+        src: https://raw.githubusercontent.com/aws-samples/amazon-cloudwatch-container-insights/latest/k8s-deployment-manifest-templates/deployment-mode/daemonset/container-insights-monitoring/fluent-bit/fluent-bit.yaml
+      register: apply_fluentbit
+
+    - name: Ensure Fluent Bit manifest was applied successfully
+      fail:
+        msg: "Failed to apply Fluent Bit manifest"
+      when: apply_fluentbit.failed
+
+    - name: Get pods in amazon-cloudwatch namespace
+      k8s_info:
+        api_version: v1
+        kind: Pod
+        namespace: amazon-cloudwatch
+      register: get_pods
+
+    - name: Display pods in amazon-cloudwatch namespace
+      debug:
+        msg: "{{ get_pods.resources | map(attribute='metadata.name') | list }}"

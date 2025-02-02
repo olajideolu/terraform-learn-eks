@@ -1,0 +1,51 @@
+apiVersion: v1
+clusters:
+- cluster:
+    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lJV3hXcVgxM2tqalV3RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2EzVmlaWEp1WlhSbGN6QWVGdzB5TkRFeU1EY3hNVEUxTlROYUZ3MHpOREV5TURVeE1USXdOVE5hTUJVeApFekFSQmdOVkJBTVRDbXQxWW1WeWJtVjBaWE13Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLCkFvSUJBUUM3Wjc3Q0dmSkFTbWx2US9UOFRycUovZzVPL3V6ZW1Hb0tHQkFrSDVIZHVMRGlWSTVKVDhlbVZWVFIKeWpVSmZ5RzYrdnZ6eVV3Q1ZOalRCTHlYbWxzMjRsT1Z6YThhdVpKTDlMWVpPTzNJWUZyOUwySzMycm1lTHFwWgpZamtoTEhablRJMlJrQnorbmU5T0tBSjZTbFcyK050UVFWc0hKTHJsVmx0M00vbkI2TGRSZXB1ejN2aDVJL2FlCnpCQXBwd3hBQ0NTbS9FTXBVY1F6Q2ZRNE9LcnRPZWxKZ3NNckhRRG9kTHRYNnEvT1c4SDJtUEZQZC93QnNHN2oKa2M3Smt1clh4M2w2Mm1Fc0VsRmhBZnFicS9nNWovNDJ5UlBURUhRdkIwa3djbGJuM2kyN2hyWlZMQitHYitiVAovbldvb2tqL25MdlRDNXFESnVQc3lUN1Raalg1QWdNQkFBR2pXVEJYTUE0R0ExVWREd0VCL3dRRUF3SUNwREFQCkJnTlZIUk1CQWY4RUJUQURBUUgvTUIwR0ExVWREZ1FXQkJTUWdLNWRaMWUreTh0M2pxSWVlWVFBNWYwNzRqQVYKQmdOVkhSRUVEakFNZ2dwcmRXSmxjbTVsZEdWek1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQ1pwTUpqNXI0TgpWRHhOOUtrbmNMdXF0V21QYzRDN3dRalQwV0IzdWhsY3VWcmpSODlIQ2o1YmkrWTFVVTd6UHlFSnRHSFhFcEFXCk5lZkJ0SXpWeEhBMC9MNEpCU3dRdDVQMkptYTgzLzdKVzVMUk9acWt2TFZqaGd5aVkyaktBNTh1M3V0VmxjNmsKK1hmWEhhUlAwR1pERWtObmVwdk5SUUdPRWFWbUh3R2lyOU1GTEtnTVZVR1VIeWRkaWJlVkN0MGl1UmpHTk5xSQpsckN4TzJxYmlxVlFmWGNsT3dHeGxYclNqU0xveVlKUTRuelZ3K1ZLSmtndkNtVDJLZllJWDVITHlrT2hOZUFpCjVZSlMrKzVjOS9Ba1d2c0RnaTQwWitHWVIwRnZFckl6YWRlZk1KWWl2bEM3eDVpSzRIRVRlSTZZcVFJTmJESmkKcVN4N2lJWFVDTmNJCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    server: https://785F12FF65BE5145886AE442523169AC.gr7.eu-central-1.eks.amazonaws.com
+  name: arn:aws:eks:eu-central-1:015992161532:cluster/demo-cluster-1
+- cluster:
+    certificate-authority-data: LS0tLS1CRUdJTiBDRVJUSUZJQ0FURS0tLS0tCk1JSURCVENDQWUyZ0F3SUJBZ0lJZXVVSVNJOHgrV2N3RFFZSktvWklodmNOQVFFTEJRQXdGVEVUTUJFR0ExVUUKQXhNS2EzVmlaWEp1WlhSbGN6QWVGdzB5TkRFeU1EZ3hOakUxTlRkYUZ3MHpOREV5TURZeE5qSXdOVGRhTUJVeApFekFSQmdOVkJBTVRDbXQxWW1WeWJtVjBaWE13Z2dFaU1BMEdDU3FHU0liM0RRRUJBUVVBQTRJQkR3QXdnZ0VLCkFvSUJBUURTRXNBaUtZYzhiQVVlUExNdFhPVkJWVENJRHFvZ0tSMVZvUXFWVkg0SUhpeHJBTXJBSmloL3NwY0QKeFVqWjJRNThDRmNQUXZUWWJCM3hSdEI0RTdQaW0wUnhpZUlaTVdHTlQ4eU1qaks0QmwrT3V1bjZsR3hyekNpLwplQWtRQzJ6Kys3VzBrWmJkeVQ5TWhWd3NscjhaQk0wcnNGNDZucm02U1d3VzdRVWFYRUk2dEJ0SENmV3BNbEdxClRwcm80RmZLMnNDeis0WVlDbDJOdEZpOWVjUU4yMmIrakNuZ1NtQ2RidkxRZnZJQTBtZWRZbDFDMkFZR25GV0cKTklZUXJ0cU16aW14YlN6QVl5b1NUZXlreDl0TFkvZENPTWo0QmJoSWR2eEU0cVorTHdyR0tsaFd2YmhSWmU4egpkRmFXTTdZZEFTVnJDOG5NalkxWDY0aHJQUC92QWdNQkFBR2pXVEJYTUE0R0ExVWREd0VCL3dRRUF3SUNwREFQCkJnTlZIUk1CQWY4RUJUQURBUUgvTUIwR0ExVWREZ1FXQkJTYjlKYXFZdnZuOHJjQWd6YWtlb3laOEUvbm96QVYKQmdOVkhSRUVEakFNZ2dwcmRXSmxjbTVsZEdWek1BMEdDU3FHU0liM0RRRUJDd1VBQTRJQkFRQWJ4c3NnaXNJNgpJbmxPZXZiWWNsZ0xwM21lOVVsdWFRUlZvWHFDYUxZNTZIYTdPVkZjdzFydjRRYkJQNy8wU3UrRmE4MW90MGRoClBEOHFuOWdoeTBjMDFhdHBWd3IrcmhSM2VPMzRsNy9pTC9pREszeEpmY2VYMjIyVElqVkZxMFY4Nzk0bDcvb2UKaHZ4ZHo3T2FqVlR2MzJNMURFVU1udTFBN3Zldmh2WW1QeFF1c08yL1NkT2FFTDdVMDlGWWhlV1hxVGdDQWtVagpwSGpjTGlTNWlMSHlSWm9VOVovbVVtWDZzYk5LaXZHVmlxNk9RL1BaMFBqWE1JNmNmQkpEWEI0Uzk2ZkM3ckZsCkYxM2VIUkRjY0pFSTRMOC91VGVrUlJrd3hSNVY1ZHE1WW5nay9pSFpJbmdCMFFKRU11Q04zeE5RSG1XZzlzZG0KM1pkT1F3OVZQRnlwCi0tLS0tRU5EIENFUlRJRklDQVRFLS0tLS0K
+    server: https://70F74A0A0CB2C062DC364AE1306D2DC8.gr7.eu-central-1.eks.amazonaws.com
+  name: arn:aws:eks:eu-central-1:015992161532:cluster/demo-cluster
+contexts:
+- context:
+    cluster: arn:aws:eks:eu-central-1:015992161532:cluster/demo-cluster-1
+    user: arn:aws:eks:eu-central-1:015992161532:cluster/demo-cluster-1
+  name: arn:aws:eks:eu-central-1:015992161532:cluster/demo-cluster-1
+- context:
+    cluster: arn:aws:eks:eu-central-1:015992161532:cluster/demo-cluster
+    user: arn:aws:eks:eu-central-1:015992161532:cluster/demo-cluster
+  name: arn:aws:eks:eu-central-1:015992161532:cluster/demo-cluster
+current-context: arn:aws:eks:eu-central-1:015992161532:cluster/demo-cluster
+kind: Config
+preferences: {}
+users:
+- name: arn:aws:eks:eu-central-1:015992161532:cluster/demo-cluster-1
+  user:
+    exec:
+      apiVersion: client.authentication.k8s.io/v1beta1
+      args:
+      - --region
+      - eu-central-1
+      - eks
+      - get-token
+      - --cluster-name
+      - demo-cluster-1
+      - --output
+      - json
+      command: aws
+- name: arn:aws:eks:eu-central-1:015992161532:cluster/demo-cluster
+  user:
+    exec:
+      apiVersion: client.authentication.k8s.io/v1beta1
+      args:
+      - --region
+      - eu-central-1
+      - eks
+      - get-token
+      - --cluster-name
+      - demo-cluster
+      - --output
+      - json
+      command: aws
