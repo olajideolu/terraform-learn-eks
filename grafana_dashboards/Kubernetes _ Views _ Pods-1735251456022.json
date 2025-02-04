@@ -1,4 +1,53 @@
 {
+  "__inputs": [
+    {
+      "name": "DS_PROMETHEUS",
+      "label": "Prometheus",
+      "description": "",
+      "type": "datasource",
+      "pluginId": "prometheus",
+      "pluginName": "Prometheus"
+    }
+  ],
+  "__elements": [],
+  "__requires": [
+    {
+      "type": "grafana",
+      "id": "grafana",
+      "name": "Grafana",
+      "version": "8.3.4"
+    },
+    {
+      "type": "datasource",
+      "id": "prometheus",
+      "name": "Prometheus",
+      "version": "5.0.0"
+    },
+    {
+      "type": "panel",
+      "id": "timeseries",
+      "name": "Time series",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "stat",
+      "name": "Stat",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "gauge",
+      "name": "Gauge",
+      "version": ""
+    },
+    {
+      "type": "panel",
+      "id": "table",
+      "name": "Table",
+      "version": ""
+    }
+  ],
   "annotations": {
     "list": [
       {
@@ -25,11 +74,15 @@
   "editable": true,
   "fiscalYearStartMonth": 0,
   "graphTooltip": 1,
-  "id": 30,
   "links": [],
+  "liveNow": false,
   "panels": [
     {
       "collapsed": false,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -38,6 +91,15 @@
       },
       "id": 43,
       "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "Information",
       "type": "row"
     },
@@ -87,7 +149,7 @@
         "textMode": "name",
         "wideLayout": true
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.2.0",
       "targets": [
         {
           "datasource": {
@@ -158,7 +220,7 @@
         "textMode": "name",
         "wideLayout": true
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.2.0",
       "targets": [
         {
           "datasource": {
@@ -223,7 +285,7 @@
         "textMode": "name",
         "wideLayout": true
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.2.0",
       "targets": [
         {
           "datasource": {
@@ -288,7 +350,7 @@
         "textMode": "name",
         "wideLayout": true
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.2.0",
       "targets": [
         {
           "datasource": {
@@ -387,7 +449,7 @@
         "textMode": "name",
         "wideLayout": true
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.2.0",
       "targets": [
         {
           "datasource": {
@@ -454,7 +516,7 @@
         "textMode": "name",
         "wideLayout": true
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.2.0",
       "targets": [
         {
           "datasource": {
@@ -525,7 +587,7 @@
         "textMode": "value",
         "wideLayout": true
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.2.0",
       "targets": [
         {
           "datasource": {
@@ -547,6 +609,10 @@
     },
     {
       "collapsed": false,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -555,6 +621,15 @@
       },
       "id": 47,
       "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "Resources",
       "type": "row"
     },
@@ -616,7 +691,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.2.0",
       "targets": [
         {
           "datasource": {
@@ -689,7 +764,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.2.0",
       "targets": [
         {
           "datasource": {
@@ -766,7 +841,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.2.0",
       "targets": [
         {
           "datasource": {
@@ -839,7 +914,7 @@
         "showThresholdMarkers": true,
         "sizing": "auto"
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.2.0",
       "targets": [
         {
           "datasource": {
@@ -958,7 +1033,7 @@
         "showHeader": true,
         "sortBy": []
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "11.2.0",
       "targets": [
         {
           "datasource": {
@@ -1234,7 +1309,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "8.3.3",
       "targets": [
         {
           "datasource": {
@@ -1363,7 +1438,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "8.3.3",
       "targets": [
         {
           "datasource": {
@@ -1499,7 +1574,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "8.3.3",
       "targets": [
         {
           "datasource": {
@@ -1606,7 +1681,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "8.3.3",
       "targets": [
         {
           "datasource": {
@@ -1678,7 +1753,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -1715,7 +1791,7 @@
           "sort": "none"
         }
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "8.3.3",
       "targets": [
         {
           "datasource": {
@@ -1801,7 +1877,8 @@
             "mode": "percentage",
             "steps": [
               {
-                "color": "red"
+                "color": "red",
+                "value": null
               },
               {
                 "color": "yellow",
@@ -1844,7 +1921,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "8.3.3",
       "targets": [
         {
           "datasource": {
@@ -1917,7 +1994,8 @@
             "mode": "percentage",
             "steps": [
               {
-                "color": "red"
+                "color": "red",
+                "value": null
               },
               {
                 "color": "yellow",
@@ -1960,7 +2038,7 @@
           "sort": "desc"
         }
       },
-      "pluginVersion": "11.4.0",
+      "pluginVersion": "8.3.3",
       "targets": [
         {
           "datasource": {
@@ -1981,6 +2059,10 @@
     },
     {
       "collapsed": false,
+      "datasource": {
+        "type": "datasource",
+        "uid": "grafana"
+      },
       "gridPos": {
         "h": 1,
         "w": 24,
@@ -1989,6 +2071,15 @@
       },
       "id": 45,
       "panels": [],
+      "targets": [
+        {
+          "datasource": {
+            "type": "datasource",
+            "uid": "grafana"
+          },
+          "refId": "A"
+        }
+      ],
       "title": "Network",
       "type": "row"
     },
@@ -2040,7 +2131,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2147,7 +2239,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2254,7 +2347,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2361,7 +2455,8 @@
             "mode": "absolute",
             "steps": [
               {
-                "color": "green"
+                "color": "green",
+                "value": null
               },
               {
                 "color": "red",
@@ -2421,9 +2516,8 @@
       "type": "timeseries"
     }
   ],
-  "preload": false,
   "refresh": "30s",
-  "schemaVersion": 40,
+  "schemaVersion": 39,
   "tags": [
     "Kubernetes",
     "Prometheus"
@@ -2432,20 +2526,27 @@
     "list": [
       {
         "current": {
-          "text": "Prometheus",
-          "value": "prometheus"
+          "selected": false,
+          "text": "",
+          "value": ""
         },
+        "hide": 0,
         "includeAll": false,
+        "multi": false,
         "name": "datasource",
         "options": [],
         "query": "prometheus",
+        "queryValue": "",
         "refresh": 1,
         "regex": "",
+        "skipUrlSync": false,
         "type": "datasource"
       },
       {
         "current": {
-          "text": "",
+          "isNone": true,
+          "selected": false,
+          "text": "None",
           "value": ""
         },
         "datasource": {
@@ -2453,7 +2554,9 @@
           "uid": "${datasource}"
         },
         "definition": "label_values(kube_node_info,cluster)",
+        "hide": 0,
         "includeAll": false,
+        "multi": false,
         "name": "cluster",
         "options": [],
         "query": {
@@ -2463,11 +2566,13 @@
         },
         "refresh": 1,
         "regex": "",
+        "skipUrlSync": false,
         "sort": 1,
         "type": "query"
       },
       {
         "current": {
+          "selected": false,
           "text": "monitoring",
           "value": "monitoring"
         },
@@ -2476,7 +2581,9 @@
           "uid": "${datasource}"
         },
         "definition": "label_values(kube_pod_info{cluster=\"$cluster\"}, namespace)",
+        "hide": 0,
         "includeAll": false,
+        "multi": false,
         "name": "namespace",
         "options": [],
         "query": {
@@ -2485,24 +2592,26 @@
         },
         "refresh": 1,
         "regex": "",
+        "skipUrlSync": false,
         "sort": 1,
-        "type": "query"
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
       },
       {
         "allValue": ".*",
         "current": {
-          "text": [
-            "All"
-          ],
-          "value": [
-            "$__all"
-          ]
+          "selected": false,
+          "text": "",
+          "value": ""
         },
         "datasource": {
           "type": "prometheus",
           "uid": "${datasource}"
         },
         "definition": "label_values(kube_pod_info{namespace=\"$namespace\", cluster=\"$cluster\"}, pod)",
+        "hide": 0,
         "includeAll": true,
         "multi": true,
         "name": "pod",
@@ -2513,15 +2622,22 @@
         },
         "refresh": 2,
         "regex": "",
+        "skipUrlSync": false,
         "sort": 1,
-        "type": "query"
+        "tagValuesQuery": "",
+        "tagsQuery": "",
+        "type": "query",
+        "useTags": false
       },
       {
         "current": {
+          "selected": false,
           "text": "30s",
           "value": "30s"
         },
+        "hide": 0,
         "includeAll": false,
+        "multi": false,
         "name": "resolution",
         "options": [
           {
@@ -2556,22 +2672,22 @@
           }
         ],
         "query": "1s, 15s, 30s, 1m, 3m, 5m",
+        "queryValue": "",
+        "skipUrlSync": false,
         "type": "custom"
       },
       {
         "current": {
-          "text": [
-            "kube-state-metrics"
-          ],
-          "value": [
-            "kube-state-metrics"
-          ]
+          "selected": false,
+          "text": "kube-state-metrics",
+          "value": "kube-state-metrics"
         },
         "datasource": {
           "type": "prometheus",
           "uid": "${datasource}"
         },
         "definition": "label_values(kube_pod_info{namespace=\"$namespace\", cluster=\"$cluster\"},job)",
+        "hide": 0,
         "includeAll": false,
         "multi": true,
         "name": "job",
@@ -2583,6 +2699,7 @@
         },
         "refresh": 1,
         "regex": "",
+        "skipUrlSync": false,
         "sort": 1,
         "type": "query"
       }
@@ -2596,6 +2713,6 @@
   "timezone": "",
   "title": "Kubernetes / Views / Pods",
   "uid": "k8s_views_pods",
-  "version": 3,
+  "version": 34,
   "weekStart": ""
 }
