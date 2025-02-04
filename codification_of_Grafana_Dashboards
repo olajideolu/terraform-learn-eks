@@ -1,0 +1,150 @@
+Can you write 
+
+## **Overview**
+
+This document explains how to structure and codify Grafana dashboards in our environment. It focuses on making dashboards reusable and adaptable across different setups by removing hardcoded values from the dashboard JSON file. We achieve this through **template variables** in Grafana
+
+Our dashboards use **Prometheus** for metrics and **CloudWatch** for logs. Future integrations will include **AWS X-Ray** for tracing.
+
+## **Key Components of a Codified Dashboard**
+
+### **1. Input Variables (`__inputs`)**
+
+Defines environment-specific inputs to prevent hardcoded values.
+
+Example from our setup:
+
+```json
+"__inputs": [
+  {
+    "name": "DS_PROMETHEUS",
+    "label": "Prometheus",
+    "type": "datasource",
+    "pluginId": "prometheus"
+  },
+  {
+    "name": "DS_CLOUDWATCH",
+    "label": "CloudWatch",
+    "type": "datasource",
+    "pluginId": "cloudwatch"
+  }
+]
+
+```
+
+This ensures that **Prometheus** and **CloudWatch** are dynamically referenced instead of hardcoded.
+
+### **2. Required Dependencies (`__requires`)**
+
+Specifies necessary plugins and versions.
+
+Example:
+
+```json
+"__requires": [
+  {
+    "type": "grafana",
+    "id": "grafana",
+    "name": "Grafana",
+    "version": "7.0.0"
+  },
+  {
+    "type": "datasource",
+    "id": "prometheus",
+    "name": "Prometheus",
+    "version": "1.0.0"
+  }
+]
+```
+
+### **3. Annotations (`annotations`)**
+
+Stores event markers and alerts.
+
+Example:
+
+```json
+"annotations": {
+  "list": [
+    {
+      "name": "Annotations & Alerts",
+      "type": "dashboard",
+      "enable": true
+    }
+  ]
+}
+
+```
+
+### **4. Panels (`panels`)**
+
+Each panel represents a visualization component.
+
+Example of a **Global CPU Usage** panel:
+
+```json
+{
+  "title": "Global CPU Usage",
+  "type": "bargauge",
+  "datasource": {
+    "type": "prometheus",
+    "uid": "${DS_PROMETHEUS}"
+  },
+  "targets": [
+    {
+      "expr": "sum(rate(node_cpu_seconds_total{mode!~\"idle|iowait|steal\"}[$__rate_interval]))",
+      "legendFormat": "CPU Usage"
+    }
+  ]
+}
+```
+
+This uses **template variables** like `${DS_PROMETHEUS}` to dynamically reference the Prometheus data source.
+
+### **5. Template Variables (`templating`)**
+
+Stores dynamic variables for flexible queries.
+
+Example:
+
+```json
+"templating": {
+  "list": [
+    {
+      "name": "cluster",
+      "query": "label_values(kube_node_info, cluster)",
+      "type": "query"
+    }
+  ]
+}
+
+```
+
+Allows selecting a cluster dynamically.
+
+### **6. CloudWatch Logs Integration**
+
+Example of an **Application Logs** panel:
+
+```json
+{
+  "title": "Application Logs",
+  "type": "logs",
+  "datasource": {
+    "type": "cloudwatch",
+    "uid": "${DS_CLOUDWATCH}"
+  },
+  "targets": [
+    {
+      "queryMode": "Logs",
+      "queryLanguage": "CWLI",
+      "expression": "fields @message | filter @log like \"$log_group\""
+    }
+  ]
+}
+
+```
+
+Uses **CloudWatch Logs** with dynamic log group filtering.
+
+this [template](https://github.com/Mubbyrex/terraform-learn/blob/eks/grafana_dashboards/template_dashboard.json) file serves as a guide when creating a dashboard 
