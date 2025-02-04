@@ -15,6 +15,13 @@
       "type": "datasource",
       "pluginId": "cloudwatch",
       "pluginName": "CloudWatch"
+    },
+    {
+      "name": "LOG_GROUP",
+      "label": "Log Group",
+      "description": "Specify the CloudWatch log group dynamically",
+      "type": "constant",
+      "value": "/aws/containerinsights/demo-cluster/application"
     }
   ],
   "__requires": [
@@ -1418,9 +1425,7 @@
           "label": "",
           "logGroups": [
             {
-              "accountId": "015992161532",
-              "arn": "arn:aws:logs:eu-central-1:015992161532:log-group:/aws/containerinsights/demo-cluster/application:*",
-              "name": "/aws/containerinsights/demo-cluster/application"
+              "name": "${LOG_GROUP}"
             }
           ],
           "matchExact": true,
@@ -3509,6 +3514,11 @@
         ],
         "query": "error",
         "type": "textbox"
+      },
+      {
+        "name": "cluster",
+        "type": "query",
+        "query": "label_values(kube_node_info, cluster)"
       }
     ]
   },
