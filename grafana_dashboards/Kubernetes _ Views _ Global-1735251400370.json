@@ -15,13 +15,6 @@
       "type": "datasource",
       "pluginId": "cloudwatch",
       "pluginName": "CloudWatch"
-    },
-    {
-      "name": "LOG_GROUP",
-      "label": "Log Group",
-      "description": "Specify the CloudWatch log group dynamically",
-      "type": "constant",
-      "value": "/aws/containerinsights/demo-cluster/application"
     }
   ],
   "__requires": [
@@ -1420,14 +1413,10 @@
             "uid": "${DS_CLOUDWATCH}"
           },
           "dimensions": {},
-          "expression": "fields @timestamp, log, @logStream, @log, kubernetes.namespace_name, kubernetes.pod_name,@entity.Attributes.K8s.Node,@entity.Attributes.EKS.Cluster\n| filter @message like /(?i)$search/ and kubernetes.namespace_name not like 'amazon-cloudwatch'\n| sort @timestamp desc\n#| limit 20",
+          "expression": "fields @message | filter @log like \"$log_group\" | filter @message like /(?i)$search/",
           "id": "",
           "label": "",
-          "logGroups": [
-            {
-              "name": "${LOG_GROUP}"
-            }
-          ],
+          "logGroups": [],
           "matchExact": true,
           "metricEditorMode": 1,
           "metricName": "",
@@ -3516,9 +3505,35 @@
         "type": "textbox"
       },
       {
-        "name": "cluster",
-        "type": "query",
-        "query": "label_values(kube_node_info, cluster)"
+        "allValue": null,
+        "current": {
+          "selected": true,
+          "text": "your_log_group_1",
+          "value": "your_log_group_1"
+        },
+        "description": "Cloudwatch Log groups",
+        "error": null,
+        "hide": 0,
+        "includeAll": false,
+        "label": "Log Group",
+        "multi": false,
+        "name": "log_group",
+        "options": [
+          {
+            "selected": true,
+            "text": "your_log_group_1",
+            "value": "your_log_group_1"
+          },
+          {
+            "selected": false,
+            "text": "your_log_group_2",
+            "value": "your_log_group_2"
+          }
+        ],
+        "query": "your_log_group_1,your_log_group_2",
+        "queryValue": "",
+        "skipUrlSync": false,
+        "type": "custom"
       }
     ]
   },
